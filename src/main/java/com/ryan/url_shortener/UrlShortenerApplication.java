@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.persistence.autoconfigure.EntityScan;
 
 @SpringBootApplication
-@EntityScan("com.ryan.url_shortener.domain.entities")
 public class UrlShortenerApplication {
 
 	public static void main(String[] args) {
