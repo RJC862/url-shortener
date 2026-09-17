@@ -1,15 +1,11 @@
-package com.ryan.url_shortener;
+package com.ryan.url_shortener.web.controllers;
 
 import com.ryan.url_shortener.domain.entities.ShortUrl;
-import com.ryan.url_shortener.domain.repository.ShortUrlRepository;
+import com.ryan.url_shortener.domain.models.ShortUrlDto;
 import com.ryan.url_shortener.domain.services.ShortUrlService;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-import com.ryan.url_shortener.domain.services.ShortUrlService;
 
 import java.util.List;
 
@@ -25,8 +21,8 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model) {
-        List<ShortUrl> shortUrls = shortUrlService.findAllPublicShortUrls();
-        model.addAttribute("shortUrls", shortUrlService);
+        List<ShortUrlDto> shortUrls = shortUrlService.findAllPublicShortUrls();
+        model.addAttribute("shortUrls", shortUrls);
         model.addAttribute("baseUrl", "http://localhost:8080");
         return "index";
     }
