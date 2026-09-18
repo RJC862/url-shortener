@@ -10,25 +10,34 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <div class="jumbotron bg-light p-5 rounded-3 my-4">
-        <p class="lead">A simple URL shortener service. Create short, easy-to-share links.</p>
+    <div class="jumbotron bg-light p-4 rounded-3 my-4">
+        <p class="lead fw-semibold">A simple URL shortener service. Create short, easy-to-share links.</p>
     </div>
 
     <div class="card mt-4">
         <div class="card-header">
-            <h5 class="card-title mb-0">Create a Short URL</h5>
+            <h5 class="card-title mb-0">Shorten Your URL</h5>
         </div>
         <div class="card-body">
             <form th:action="@{/short-urls}" method="post"
                   th:object="${createShortUrlForm}">
                 <div class="mb-3">
-                    <label for="originalUrl" class="form-label">Original URL</label>
+                    <label for="originalUrl" class="form-label">Original Url:</label>
                     <input type="text" class="form-control" id="originalUrl"
                            th:field="*{originalUrl}"
                            placeholder="https://example.com/my-long-url">
                     <div class="text-danger"
                          th:if="${#fields.hasErrors('originalUrl')}"
-                         th:errors="*{originalUrl}"></div>
+                         th:errors="*{originalUrl}">
+                    </div>
+                    <label for="expiryInDays" class="form-label">Expires In:</label>
+                    <input type="text"
+                           th:field="*{expiryInDays}"
+                           class="form-control"
+                           placeholder="Min=1 Max=365"
+                           id="expiryInDays">
+                    <div class = "text-danger" th:if="${#fields.hasErrors('expiryInDays')}"
+                    th:errors="*{expiryInDays}"></div>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Shorten URL</button>
