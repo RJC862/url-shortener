@@ -15,6 +15,7 @@ public class URLValidator {
 
     public static boolean UrlExists(String urlString) {
         try {
+            urlString = urlString.strip();
             log.debug("Checking if URL exists: {}", urlString);
             HttpClient client = HttpClient.newBuilder()
                     .connectTimeout(Duration.ofSeconds(5))
@@ -30,7 +31,7 @@ public class URLValidator {
 
             return (statusCode >= 200 && statusCode < 400);
         } catch (Exception e){
-            log.error("Error while checking URL: {}", urlString, e);
+            log.error("Error while checking if URL exists: {}", urlString, e);
             return false;
         }
 

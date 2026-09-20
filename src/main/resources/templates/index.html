@@ -27,12 +27,12 @@
                            th:field="*{originalUrl}"
                            placeholder="https://example.com/my-long-url">
                     <div class="text-danger"
-                         th:if="${#fields.hasErrors('originalUrl') && invalidUrlMessage == null}"
+                         th:if="${#fields.hasErrors('originalUrl')}"
                          th:errors="*{originalUrl}">
                     </div>
                     <div class = "text-danger"
-                    th:if="${invalidUrlMessage != null}"
-                    th:text="${invalidUrlMessage}">
+                        th:if="${invalidUrlMessage != null}"
+                        th:text="${invalidUrlMessage}">
                     </div>
 
                     <label for="expiryInDays" class="form-label">Expires In:</label>
@@ -41,8 +41,9 @@
                            class="form-control"
                            placeholder="Min=1 Max=365"
                            id="expiryInDays">
-                    <div class = "text-danger" th:if="${#fields.hasErrors('expiryInDays')}"
-                    th:errors="*{expiryInDays}"></div>
+                    <div class = "text-danger"
+                         th:if="${#fields.hasErrors('expiryInDays')}"
+                         th:errors="*{expiryInDays}"></div>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Shorten URL</button>
