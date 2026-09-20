@@ -62,4 +62,9 @@ public class HomeController {
         return "redirect:/";
     }
 
+    @GetMapping("/register")
+    public String register(){
+        return "register";
+    }
+
 }
