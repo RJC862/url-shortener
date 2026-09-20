@@ -34,6 +34,13 @@ public class ShortUrlService {
     }
 
     public ShortUrlDto createShortUrl(CreateShortUrlCmd cmd) {
+        if(properties.validateOriginalUrl()){
+            boolean UrlExists = URLValidator.UrlExists(cmd.originalUrl());
+
+            if (!UrlExists) {
+                throw new RuntimeException("Invalid URL");
+            }
+        }
         var shortKey = generateUniqueShortKey();
         var shortUrl = new ShortUrl();
         var expiryInDays = cmd.expiryInDays();

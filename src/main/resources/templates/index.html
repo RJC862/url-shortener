@@ -27,9 +27,14 @@
                            th:field="*{originalUrl}"
                            placeholder="https://example.com/my-long-url">
                     <div class="text-danger"
-                         th:if="${#fields.hasErrors('originalUrl')}"
+                         th:if="${#fields.hasErrors('originalUrl') && invalidUrlMessage == null}"
                          th:errors="*{originalUrl}">
                     </div>
+                    <div class = "text-danger"
+                    th:if="${invalidUrlMessage != null}"
+                    th:text="${invalidUrlMessage}">
+                    </div>
+
                     <label for="expiryInDays" class="form-label">Expires In:</label>
                     <input type="text"
                            th:field="*{expiryInDays}"

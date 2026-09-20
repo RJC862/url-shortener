@@ -54,9 +54,10 @@ public class HomeController {
             CreateShortUrlCmd cmd  = new CreateShortUrlCmd(form.originalUrl(), form.expiryInDays());
             var shortUrlDto = shortUrlService.createShortUrl(cmd);
             redirectAttributes.addFlashAttribute("successMessage", "Successfully Created Short-Url: " +
-                    properties.baseUrl() + "/s" + shortUrlDto.shortKey());
+                    properties.baseUrl() + shortUrlDto.shortKey());
         } catch (Exception e){
-            redirectAttributes.addFlashAttribute("errorMessage", "Failed to Create Short-Url");
+                model.addAttribute("invalidUrlMessage", "Invalid URL");
+                redirectAttributes.addFlashAttribute("errorMessage", "Failed to Create Short-Url");
         }
         return "redirect:/";
     }
