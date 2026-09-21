@@ -2,9 +2,11 @@ package com.ryan.url_shortener.web.controllers;
 
 import com.ryan.url_shortener.ApplicationProperties;
 import com.ryan.url_shortener.domain.models.CreateShortUrlCmd;
+import com.ryan.url_shortener.domain.models.RegisterNewUserCmd;
 import com.ryan.url_shortener.domain.models.ShortUrlDto;
 import com.ryan.url_shortener.domain.services.ShortUrlService;
 import com.ryan.url_shortener.dtos.CreateShortUrlForm;
+import com.ryan.url_shortener.dtos.RegisterNewUserForm;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,7 +53,7 @@ public class HomeController {
         }
 
         try {
-            CreateShortUrlCmd cmd  = new CreateShortUrlCmd(form.originalUrl(), form.expiryInDays());
+            CreateShortUrlCmd cmd = new CreateShortUrlCmd(form.originalUrl(), form.expiryInDays());
             var shortUrlDto = shortUrlService.createShortUrl(cmd);
             redirectAttributes.addFlashAttribute("successMessage", "Successfully Created Short-Url: " +
                     properties.baseUrl() + shortUrlDto.shortKey());
@@ -65,6 +67,25 @@ public class HomeController {
     @GetMapping("/register")
     public String register(){
         return "register";
+    }
+
+    @PostMapping("/register")
+    String registerNewUser(@ModelAttribute("registerNewUserForm") @Valid RegisterNewUserForm form,
+                           BindingResult bindingResult,
+                           RedirectAttributes redirectAttributes,
+                           Model model){
+        if (bindingResult.hasErrors()) {
+            return "register";
+        }
+
+        try {
+            RegisterNewUserCmd cmd = new RegisterNewUserCmd(form.userName(), form.password(), form.email());
+
+        } catch (Exception e) {
+
+        }
+
+        return "redirect:/register";
     }
 
 }
