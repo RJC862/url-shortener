@@ -4,7 +4,9 @@ import com.ryan.url_shortener.ApplicationProperties;
 import com.ryan.url_shortener.domain.models.CreateShortUrlCmd;
 import com.ryan.url_shortener.domain.models.RegisterNewUserCmd;
 import com.ryan.url_shortener.domain.models.ShortUrlDto;
+import com.ryan.url_shortener.domain.models.UserDto;
 import com.ryan.url_shortener.domain.services.ShortUrlService;
+import com.ryan.url_shortener.domain.services.UserService;
 import com.ryan.url_shortener.dtos.CreateShortUrlForm;
 import com.ryan.url_shortener.dtos.RegisterNewUserForm;
 import jakarta.validation.Valid;
@@ -25,10 +27,12 @@ public class HomeController {
 
     private final ShortUrlService shortUrlService;
     private final ApplicationProperties properties;
+    private final UserService userService;
 
-    public HomeController(ShortUrlService shortUrlService, ApplicationProperties properties) {
+    public HomeController(ShortUrlService shortUrlService, ApplicationProperties properties, UserService userService) {
         this.shortUrlService = shortUrlService;
         this.properties = properties;
+        this.userService = userService;
     }
 
     @GetMapping("/")
@@ -80,9 +84,11 @@ public class HomeController {
 
         try {
             RegisterNewUserCmd cmd = new RegisterNewUserCmd(form.userName(), form.password(), form.email());
-
+            UserDto newUser = userService.createUser(cmd);
+            redirectAttributes.addFlashAttribute("successMessage", "User Successfully Registered. Welcome, " +
+                    newUser.name());
         } catch (Exception e) {
-
+            redirectAttributes.addFlashAttribute("errorMessage", "Failed to Register User.");
         }
 
         return "redirect:/register";

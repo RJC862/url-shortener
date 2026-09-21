@@ -1,6 +1,7 @@
 CREATE TABLE users
 (
-    id         BIGSERIAL PRIMARY KEY,
+    internal_id BIGSERIAL PRIMARY KEY,
+    public_id   UUID NOT NULL UNIQUE DEFAULT gen_random_uuid(),
     email      VARCHAR(100) NOT NULL UNIQUE,
     password   VARCHAR(100) NOT NULL,
     name       VARCHAR(100) NOT NULL,
@@ -18,5 +19,5 @@ CREATE TABLE short_urls
     created_by   BIGINT,
     click_count  BIGINT      NOT NULL DEFAULT 0,
     created_at   TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT fk_short_urls_users FOREIGN KEY (created_by) REFERENCES users (id)
+    CONSTRAINT fk_short_urls_users FOREIGN KEY (created_by) REFERENCES users (internal_id)
 );

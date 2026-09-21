@@ -4,14 +4,18 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.time.Instant;
+import java.util.UUID;
 
 @Entity
 @Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+    @Column(name = "internal_id", nullable = false)
+    private Long internal_id;
+
+    @Column(name = "public_id", nullable = false)
+    private UUID public_id;
 
     @Column(name = "email", nullable = false, length = 100)
     private String email;
@@ -30,12 +34,20 @@ public class User {
     @Column(name = "created_at", nullable = false)
     private Instant createdAt;
 
-    public Long getId() {
-        return id;
+    public Long getInternalId() {
+        return internal_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setInternalId(Long internalId) {
+        this.internal_id = internalId;
+    }
+
+    public UUID getPublicId() {
+        return public_id;
+    }
+
+    public void setPublicId(UUID publicId) {
+        this.public_id = publicId;
     }
 
     public String getEmail() {
