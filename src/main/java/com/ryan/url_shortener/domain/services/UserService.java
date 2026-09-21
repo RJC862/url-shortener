@@ -4,14 +4,16 @@ import com.ryan.url_shortener.domain.entities.User;
 import com.ryan.url_shortener.domain.models.RegisterNewUserCmd;
 import com.ryan.url_shortener.domain.models.UserDto;
 import com.ryan.url_shortener.domain.repository.UserRepository;
+import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.random.RandomGenerator;
 
+@Service
 public class UserService {
     private final EntityMapper mapper;
 
-    public UserService(EntityMapper mapper, UserRepository userRepository) {
+    public UserService(EntityMapper mapper) {
         this.mapper = mapper;
     }
 

@@ -21,7 +21,10 @@
 
                 <div class="card-body">
                     <form th:action="@{/register}" th:object="${registerNewUserForm}" method="post">
-
+                        <label for="userName" class="form-label">Username: </label>
+                        <input type = "text" class = "form-control" id="userName"
+                               th:field="*{userName}"
+                                placeholder="Username">
                     </form>
                 </div>
             </div>

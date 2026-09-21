@@ -69,7 +69,8 @@ public class HomeController {
     }
 
     @GetMapping("/register")
-    public String register(){
+    public String register(Model model){
+        model.addAttribute("registerNewUserForm", new RegisterNewUserForm("", "", ""));
         return "register";
     }
 
