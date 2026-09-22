@@ -20,11 +20,28 @@
                 </div>
 
                 <div class="card-body">
+
                     <form th:action="@{/register}" th:object="${registerNewUserForm}" method="post">
-                        <label for="userName" class="form-label">Username: </label>
-                        <input type = "text" class = "form-control" id="userName"
-                               th:field="*{userName}"
-                                placeholder="Username">
+                        <div class = "mb-2"><label for="userName" class="form-label">Username: </label>
+                            <input type = "text" class = "form-control" id="userName"
+                                   th:field="*{userName}"
+                                   placeholder="username">
+                        </div>
+
+                        <div class = "mb-2">
+                            <label for="email" class = "form-label">Email: </label>
+                            <input type="text" class = "form-control" id = "email"
+                                   th:field = "*{email}"
+                                   placeholder="example@domain">
+                        </div>
+
+                        <div class = "mb-2">
+                            <label for="password" class = "form-label">Password: </label>
+                            <input type="text" class = "form-control" id = "password"
+                                   th:field = "*{password}"
+                                   placeholder="password">
+                        </div>
+
                     </form>
                 </div>
             </div>
