@@ -2,14 +2,21 @@ pipeline {
     agent any
 
     stages {
-        stage('Build & Test') {
+        stage('Build') {
             steps {
-                // For Linux/Mac Jenkins agent:
-                sh './mvnw clean package'
-
-                // If your Jenkins agent is running on Windows, use instead:
-                // bat 'mvnw.cmd clean package'
+                sh 'mvn clean package'
             }
+        }
+    }
+
+    stage('Test') {
+        steps {
+            sh 'mvn test'
+        }
+    }
+    stage('Deploy'){
+        steps{
+            echo 'Deploying application...'
         }
     }
 }
