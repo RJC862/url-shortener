@@ -88,6 +88,7 @@ public class HomeController {
             UserDto newUser = userService.createUser(cmd);
             redirectAttributes.addFlashAttribute("successMessage", "User Successfully Registered. Welcome, " +
                     newUser.name());
+            return "redirect:/";
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "Failed To Register User.");
         }
