@@ -57,10 +57,10 @@ public class HomeController {
         }
 
         try {
-            CreateShortUrlCmd cmd = new CreateShortUrlCmd(form.originalUrl(), form.expiryInDays());
+            CreateShortUrlCmd cmd = new CreateShortUrlCmd(form.originalUrl().strip(), form.expiryInDays());
             var shortUrlDto = shortUrlService.createShortUrl(cmd);
             redirectAttributes.addFlashAttribute("successMessage", "Successfully Created Short-Url: " +
-                    properties.baseUrl() + shortUrlDto.shortKey());
+                    properties.baseUrl() + "/s" + shortUrlDto.shortKey());
         } catch (Exception e){
                 redirectAttributes.addFlashAttribute("invalidUrlMessage", "Invalid URL");
                 redirectAttributes.addFlashAttribute("errorMessage", "Failed to Create Short-Url");
@@ -84,7 +84,7 @@ public class HomeController {
         }
 
         try {
-            RegisterNewUserCmd cmd = new RegisterNewUserCmd(form.userName(), form.password(), form.email());
+            RegisterNewUserCmd cmd = new RegisterNewUserCmd(form.username(), form.email(), form.password());
             UserDto newUser = userService.createUser(cmd);
             redirectAttributes.addFlashAttribute("successMessage", "User Successfully Registered. Welcome, " +
                     newUser.name());

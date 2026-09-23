@@ -1,7 +1,7 @@
 CREATE TABLE users
 (
     internal_id BIGSERIAL PRIMARY KEY,
-    public_id   UUID NOT NULL UNIQUE DEFAULT gen_random_uuid(),
+    public_id   BIGINT NOT NULL UNIQUE,
     email      VARCHAR(100) NOT NULL UNIQUE,
     password   VARCHAR(100) NOT NULL,
     name       VARCHAR(100) NOT NULL,

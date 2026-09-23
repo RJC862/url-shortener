@@ -5,4 +5,6 @@ import org.jspecify.annotations.NonNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {
+
+    boolean existsByPublicId(Long publicId);
 }

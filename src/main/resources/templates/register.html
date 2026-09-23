@@ -12,7 +12,7 @@
     <div layout:fragment="content" >
         <div class = "container">
             <div class = "jumbotron bg-light p-4 rounded-3 my-4">
-                <p class="lead fw-semibold" >Registration Page</p>
+                <p class="lead fw-semibold" >Register Your Account</p>
             </div>
             <div class="card">
                 <div class="card-header">
@@ -22,9 +22,10 @@
                 <div class="card-body">
 
                     <form th:action="@{/register}" th:object="${registerNewUserForm}" method="post">
-                        <div class = "mb-2"><label for="userName" class="form-label">Username: </label>
-                            <input type = "text" class = "form-control" id="userName"
-                                   th:field="*{userName}"
+                        <div class = "mb-2">
+                            <label for="username" class="form-label">Username: </label>
+                            <input type = "text" class = "form-control" id="username"
+                                   th:field="*{username}"
                                    placeholder="username">
                         </div>
 
@@ -35,11 +36,15 @@
                                    placeholder="example@domain">
                         </div>
 
-                        <div class = "mb-2">
+                        <div class = "mb-3">
                             <label for="password" class = "form-label">Password: </label>
                             <input type="text" class = "form-control" id = "password"
                                    th:field = "*{password}"
                                    placeholder="password">
+                        </div>
+
+                        <div>
+                            <button type="submit" class = "btn btn-primary">Submit</button>
                         </div>
 
                     </form>

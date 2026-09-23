@@ -15,7 +15,7 @@ public class User {
     private Long internal_id;
 
     @Column(name = "public_id", nullable = false)
-    private UUID public_id;
+    private long public_id;
 
     @Column(name = "email", nullable = false, length = 100)
     private String email;
@@ -28,7 +28,7 @@ public class User {
 
     @ColumnDefault("'ROLE_USER'")
     @Column(name = "role", nullable = false, length = 20)
-    private String role;
+    private String role= "'ROLE_USER'";
 
     @ColumnDefault("CURRENT_TIMESTAMP")
     @Column(name = "created_at", nullable = false)
@@ -42,11 +42,11 @@ public class User {
         this.internal_id = internalId;
     }
 
-    public UUID getPublicId() {
+    public Long getPublicId() {
         return public_id;
     }
 
-    public void setPublicId(UUID publicId) {
+    public void setPublicId(Long publicId) {
         this.public_id = publicId;
     }
 

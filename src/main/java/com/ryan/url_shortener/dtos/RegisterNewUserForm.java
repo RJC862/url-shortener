@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 
 public record RegisterNewUserForm(
         @NotBlank(message = "Please create your username")
-        String userName,
+        String username,
 
         @NotBlank(message = "Please enter your email")
         String email,
