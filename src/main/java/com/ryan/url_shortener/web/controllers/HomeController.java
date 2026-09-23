@@ -89,7 +89,7 @@ public class HomeController {
             redirectAttributes.addFlashAttribute("successMessage", "User Successfully Registered. Welcome, " +
                     newUser.name());
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "Failed to Register User.");
+            redirectAttributes.addFlashAttribute("errorMessage", "Failed To Register User.");
         }
 
         return "redirect:/register";

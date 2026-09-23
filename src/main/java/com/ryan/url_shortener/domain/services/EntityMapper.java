@@ -27,6 +27,6 @@ public class EntityMapper {
     }
 
     public UserDto toUserDto(User user) {
-        return new UserDto(user.getInternalId(), user.getName());
+        return new UserDto(user.getPublicId(), user.getName());
     }
 }

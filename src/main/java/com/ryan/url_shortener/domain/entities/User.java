@@ -12,10 +12,10 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "internal_id", nullable = false)
-    private Long internal_id;
+    private Long internalId;
 
     @Column(name = "public_id", nullable = false)
-    private long public_id;
+    private Long publicId;
 
     @Column(name = "email", nullable = false, length = 100)
     private String email;
@@ -35,19 +35,19 @@ public class User {
     private Instant createdAt;
 
     public Long getInternalId() {
-        return internal_id;
+        return internalId;
     }
 
     public void setInternalId(Long internalId) {
-        this.internal_id = internalId;
+        this.internalId = internalId;
     }
 
     public Long getPublicId() {
-        return public_id;
+        return publicId;
     }
 
     public void setPublicId(Long publicId) {
-        this.public_id = publicId;
+        this.publicId = publicId;
     }
 
     public String getEmail() {

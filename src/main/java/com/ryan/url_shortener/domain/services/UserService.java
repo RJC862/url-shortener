@@ -42,7 +42,7 @@ public class UserService {
         Long userId;
         do {
             userId = generateUserId();
-        } while (!userRepository.existsByPublicId(userId));
+        } while (userRepository.existsByPublicId(userId));
 
         return userId;
     }
