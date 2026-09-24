@@ -24,11 +24,14 @@ public class UserService {
     public UserDto createUser(RegisterNewUserCmd cmd) {
 
         var user = new User();
-
         var username = cmd.username();
         var password = cmd.password();
         var email = cmd.email();
         var publicId = generateUniqueUserId();
+
+        if (userRepository.existsByName(username)) {
+            
+        }
         user.setEmail(email);
         user.setPassword(password);
         user.setName(username);

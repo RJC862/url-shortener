@@ -9,6 +9,7 @@ import com.ryan.url_shortener.domain.services.ShortUrlService;
 import com.ryan.url_shortener.domain.services.UserService;
 import com.ryan.url_shortener.dtos.CreateShortUrlForm;
 import com.ryan.url_shortener.dtos.RegisterNewUserForm;
+import com.ryan.url_shortener.exceptions.InvalidUrlException;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,7 +63,7 @@ public class HomeController {
             redirectAttributes.addFlashAttribute("successMessage", "Successfully Created Short-Url: " +
                     properties.baseUrl() + "/s" + shortUrlDto.shortKey());
         } catch (Exception e){
-                redirectAttributes.addFlashAttribute("errorMessage", "Failed to Create Short-Url: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "Failed to Create Short-Url: " + e.getMessage());
         }
         return "redirect:/";
     }
