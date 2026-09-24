@@ -62,8 +62,7 @@ public class HomeController {
             redirectAttributes.addFlashAttribute("successMessage", "Successfully Created Short-Url: " +
                     properties.baseUrl() + "/s" + shortUrlDto.shortKey());
         } catch (Exception e){
-                redirectAttributes.addFlashAttribute("invalidUrlMessage", "Invalid URL");
-                redirectAttributes.addFlashAttribute("errorMessage", "Failed to Create Short-Url");
+                redirectAttributes.addFlashAttribute("errorMessage", "Failed to Create Short-Url: " + e.getMessage());
         }
         return "redirect:/";
     }

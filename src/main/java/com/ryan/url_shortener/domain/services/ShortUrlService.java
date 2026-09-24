@@ -6,6 +6,7 @@ import com.ryan.url_shortener.domain.models.CreateShortUrlCmd;
 import com.ryan.url_shortener.domain.models.ShortUrlDto;
 import com.ryan.url_shortener.domain.repository.ShortUrlRepository;
 import com.ryan.url_shortener.dtos.CreateShortUrlForm;
+import com.ryan.url_shortener.exceptions.InvalidUrlException;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
@@ -38,9 +39,10 @@ public class ShortUrlService {
             boolean UrlExists = URLValidator.UrlExists(cmd.originalUrl());
 
             if (!UrlExists) {
-                throw new RuntimeException("Invalid URL");
+                throw new InvalidUrlException("Invalid URL");
             }
         }
+
         var shortKey = generateUniqueShortKey();
         var shortUrl = new ShortUrl();
         var expiryInDays = cmd.expiryInDays();

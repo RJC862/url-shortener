@@ -43,7 +43,8 @@
                            id="expiryInDays">
                     <div class = "text-danger"
                          th:if="${#fields.hasErrors('expiryInDays')}"
-                         th:errors="*{expiryInDays}"></div>
+                         th:errors="*{expiryInDays}">
+                    </div>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Shorten URL</button>
