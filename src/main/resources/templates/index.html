@@ -35,7 +35,7 @@
                     <input type="text"
                            th:field="*{expiryInDays}"
                            class="form-control"
-                           placeholder="Min=1 Max=365"
+                           placeholder="Min (Default) =1 Max=365 "
                            id="expiryInDays">
                     <div class = "text-danger"
                          th:if="${#fields.hasErrors('expiryInDays')}"

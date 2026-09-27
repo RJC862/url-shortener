@@ -34,6 +34,10 @@ public class ShortUrlService {
         return shortUrlRepository.findPublicShortUrls().stream().map(entityMapper::toShortUrlDto).toList();
     }
 
+    public String getOriginalUrlByKey(String key) {
+        return shortUrlRepository.getByShortKey(key).getOriginalUrl();
+    }
+
     public ShortUrlDto createShortUrl(CreateShortUrlCmd cmd) {
         if(properties.validateOriginalUrl()){
             boolean UrlExists = URLValidator.UrlExists(cmd.originalUrl());

@@ -13,4 +13,5 @@ public interface ShortUrlRepository extends JpaRepository<ShortUrl, Long>{
     List<ShortUrl> findPublicShortUrls();
 
     boolean existsByShortKey(String shortKey);
+    ShortUrl getByShortKey(String shortKey);
 }
