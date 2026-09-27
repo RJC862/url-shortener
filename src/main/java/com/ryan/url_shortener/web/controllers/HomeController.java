@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.ryan.url_shortener.ApplicationProperties;
@@ -28,12 +29,11 @@ public class HomeController {
 
     private final ShortUrlService shortUrlService;
     private final ApplicationProperties properties;
-    private final UserService userService;
+
 
     public HomeController(ShortUrlService shortUrlService, ApplicationProperties properties, UserService userService) {
         this.shortUrlService = shortUrlService;
         this.properties = properties;
-        this.userService = userService;
     }
 
     @GetMapping("/")
@@ -46,7 +46,7 @@ public class HomeController {
     }
 
     @PostMapping("/short-urls")
-    String createShortUrl(@ModelAttribute("createShortUrlForm") @Valid CreateShortUrlForm form,
+    public String createShortUrl(@ModelAttribute("createShortUrlForm") @Valid CreateShortUrlForm form,
                           BindingResult bindingResult,
                           RedirectAttributes redirectAttributes,
                           Model model) {
@@ -62,38 +62,9 @@ public class HomeController {
             var shortUrlDto = shortUrlService.createShortUrl(cmd);
             redirectAttributes.addFlashAttribute("successMessage", "Successfully Created Short-Url: " +
                     properties.baseUrl() + "/s" + shortUrlDto.shortKey());
-        } catch (Exception e){
+        } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "Failed to Create Short-Url: " + e.getMessage());
         }
         return "redirect:/";
     }
-
-    @GetMapping("/register")
-    public String register(Model model){
-        model.addAttribute("registerNewUserForm", new RegisterNewUserForm("", "", ""));
-        return "register";
-    }
-
-    @PostMapping("/register")
-    String registerNewUser(@ModelAttribute("registerNewUserForm") @Valid RegisterNewUserForm form,
-                           BindingResult bindingResult,
-                           RedirectAttributes redirectAttributes,
-                           Model model){
-        if (bindingResult.hasErrors()) {
-            return "register";
-        }
-
-        try {
-            RegisterNewUserCmd cmd = new RegisterNewUserCmd(form.username(), form.email(), form.password());
-            UserDto newUser = userService.createUser(cmd);
-            redirectAttributes.addFlashAttribute("successMessage", "User Successfully Registered. Welcome, " +
-                    newUser.name());
-            return "redirect:/";
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "Failed To Register User.");
-        }
-
-        return "redirect:/register";
-    }
-
 }
