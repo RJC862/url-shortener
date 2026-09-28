@@ -45,6 +45,6 @@ public class RegisterController {
             redirectAttributes.addFlashAttribute("errorMessage", "Failed To Register User.");
         }
 
-        return "redirect:/register";
+        return "redirect:/";
     }
 }

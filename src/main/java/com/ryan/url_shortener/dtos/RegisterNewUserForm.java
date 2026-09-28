@@ -1,5 +1,6 @@
 package com.ryan.url_shortener.dtos;
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 
 public record RegisterNewUserForm(
