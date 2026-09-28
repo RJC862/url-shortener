@@ -31,6 +31,15 @@ public class RegisterController {
                            BindingResult bindingResult,
                            RedirectAttributes redirectAttributes,
                            Model model){
+
+        if (userService.existsByEmail(form.email())) {
+            bindingResult.rejectValue("email", "error.email.exists", "An account with this email already exists.");
+        }
+
+        if(userService.existsByUsername(form.username())) {
+            bindingResult.rejectValue("username", "error.username.exists", "An account with this username already exists.");
+        }
+
         if (bindingResult.hasErrors()) {
             return "register";
         }

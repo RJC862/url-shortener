@@ -21,6 +21,13 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    public boolean existsByUsername(String username) {
+        return userRepository.existsByName(username);
+    }
+
+    public boolean existsByEmail(String email) {
+        return userRepository.existsByEmail(email);
+    }
     public UserDto createUser(RegisterNewUserCmd cmd) {
 
         var user = new User();
@@ -29,9 +36,6 @@ public class UserService {
         var email = cmd.email();
         var publicId = generateUniqueUserId();
 
-        if (userRepository.existsByName(username)) {
-            
-        }
         user.setEmail(email);
         user.setPassword(password);
         user.setName(username);
