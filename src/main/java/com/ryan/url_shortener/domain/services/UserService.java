@@ -25,6 +25,16 @@ public class UserService {
         return userRepository.existsByName(username);
     }
 
+    public boolean isUsernameValid(String username) {
+
+        for (int i = 0; i < username.length(); i++) {
+            if (!Character.isLetterOrDigit(username.charAt(i))){
+                return false;
+            }
+        }
+        return true;
+    }
+
     public boolean existsByEmail(String email) {
         return userRepository.existsByEmail(email);
     }

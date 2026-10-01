@@ -40,6 +40,10 @@ public class RegisterController {
             bindingResult.rejectValue("username", "error.username.exists", "An account with this username already exists.");
         }
 
+        if (!userService.isUsernameValid(form.username())) {
+            bindingResult.rejectValue("username", "error.invalid.username", "Username must be alphanumeric.");
+        }
+
         if (bindingResult.hasErrors()) {
             return "register";
         }

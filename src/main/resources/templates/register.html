@@ -48,7 +48,7 @@
                             <label for="password" class = "form-label">Password: </label>
                             <input type="text" class = "form-control" id = "password"
                                    th:field = "*{password}"
-                                   placeholder="password">
+                                   placeholder="password must be at least 8 characters long">
                         </div>
                         <div class="text-danger"
                              th:if="*{#fields.hasErrors('password')}"

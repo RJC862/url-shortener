@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Size;
 
 public record RegisterNewUserForm(
         @NotBlank(message = "Please create your username")
+        @Size(max = 25, message = "Username length cannot exceed 25 characters")
         String username,
 
         @NotBlank(message = "Please enter your email")
