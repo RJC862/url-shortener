@@ -11,9 +11,9 @@
 <body>
     <div layout:fragment="content" >
         <div class = "container">
-            <div class = "jumbotron bg-light p-4 rounded-3 my-4">
-                <p class="lead fw-semibold" >Register Your Account</p>
-            </div>
+            <h4 class = "jumbotron bg-light p-4 rounded-4 my-4">
+                Register Your Account
+            </h4>
             <div class="card">
                 <div class="card-header">
                     <h5 class="card-title">Create An Account</h5>
@@ -55,7 +55,7 @@
                              th:errors="*{password}">
                         </div>
 
-                        <div>
+                        <div class = "mt-2">
                             <button type="submit" class = "btn btn-primary" id = "submitBtn">Submit</button>
                         </div>
 
