@@ -15,10 +15,12 @@ import java.util.random.RandomGenerator;
 public class UserService {
     private final EntityMapper mapper;
     private final UserRepository userRepository;
+    private final SecurityConfig securityConfig;
 
-    public UserService(EntityMapper mapper, UserRepository userRepository) {
+    public UserService(EntityMapper mapper, UserRepository userRepository, SecurityConfig securityConfig) {
         this.mapper = mapper;
         this.userRepository = userRepository;
+        this.securityConfig = securityConfig;
     }
 
     public boolean existsByUsername(String username) {
@@ -42,7 +44,7 @@ public class UserService {
 
         var user = new User();
         var username = cmd.username();
-        var password = cmd.password();
+        var password = securityConfig.passwordEncoder().encode(cmd.password());
         var email = cmd.email();
         var publicId = generateUniqueUserId();
 
