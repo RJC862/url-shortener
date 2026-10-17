@@ -1,6 +1,6 @@
 # Overview
-My personal ongoing web dev project. Small changes whenever I have time (I'm a pretty busy guy)\n
-Project initialized by following the first 1.5 hours of a [great tutorial](https://youtu.be/XEgS8yq-zgw?si=37kjYAojZNs1PemV)
+My personal ongoing web dev project. Small changes whenever I have time (I'm a pretty busy guy).
+Project initialized by following the first 1.5 hours of a [great tutorial](https://youtu.be/XEgS8yq-zgw?si=37kjYAojZNs1PemV).
 Tutorial basically helped me set up my IDE, PostgreSQL Database, Flyway migration, docker containers, a reusable HTML layout template, and initial controllers, dtos, and services.
 Everything after commit 28fb37a is my own work. 
 
