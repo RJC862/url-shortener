@@ -1,7 +1,7 @@
 package com.ryan.url_shortener.domain.services;
 
 import com.ryan.url_shortener.domain.entities.ShortUrl;
-import com.ryan.url_shortener.domain.entities.User;
+import com.ryan.url_shortener.domain.entities.UserEntity;
 import com.ryan.url_shortener.domain.models.ShortUrlDto;
 import com.ryan.url_shortener.domain.models.UserDto;
 import org.springframework.stereotype.Component;
@@ -26,7 +26,7 @@ public class EntityMapper {
         );
     }
 
-    public UserDto toUserDto(User user) {
+    public UserDto toUserDto(UserEntity user) {
         return new UserDto(user.getPublicId(), user.getName());
     }
 }

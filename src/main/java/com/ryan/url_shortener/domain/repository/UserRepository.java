@@ -1,12 +1,15 @@
 package com.ryan.url_shortener.domain.repository;
 
-import com.ryan.url_shortener.domain.entities.User;
-import org.jspecify.annotations.NonNull;
+import com.ryan.url_shortener.domain.entities.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+import java.util.Optional;
+
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
     boolean existsByPublicId(Long publicId);
     boolean existsByName(String name);
     boolean existsByEmail(String email);
+
+    Optional<UserEntity> findByName(String name);
 }

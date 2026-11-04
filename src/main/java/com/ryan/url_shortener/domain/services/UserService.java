@@ -1,6 +1,6 @@
 package com.ryan.url_shortener.domain.services;
 
-import com.ryan.url_shortener.domain.entities.User;
+import com.ryan.url_shortener.domain.entities.UserEntity;
 import com.ryan.url_shortener.domain.models.RegisterNewUserCmd;
 import com.ryan.url_shortener.domain.models.UserDto;
 import com.ryan.url_shortener.domain.repository.UserRepository;
@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.Random;
-import java.util.UUID;
-import java.util.random.RandomGenerator;
 
 @Service
 public class UserService {
@@ -40,9 +38,10 @@ public class UserService {
     public boolean existsByEmail(String email) {
         return userRepository.existsByEmail(email);
     }
+
     public UserDto createUser(RegisterNewUserCmd cmd) {
 
-        var user = new User();
+        var user = new UserEntity();
         var username = cmd.username();
         var password = securityConfig.passwordEncoder().encode(cmd.password());
         var email = cmd.email();

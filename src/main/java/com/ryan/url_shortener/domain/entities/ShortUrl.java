@@ -29,7 +29,7 @@ public class ShortUrl {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "created_by")
-    private User createdBy;
+    private UserEntity createdBy;
 
     @ColumnDefault("0")
     @Column(name = "click_count", nullable = false)
@@ -79,11 +79,11 @@ public class ShortUrl {
         this.expiresAt = expiresAt;
     }
 
-    public User getCreatedBy() {
+    public UserEntity getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(User createdBy) {
+    public void setCreatedBy(UserEntity createdBy) {
         this.createdBy = createdBy;
     }
 
