@@ -32,6 +32,8 @@ public class DbUserDetailsService implements UserDetailsService {
 
         UserEntity u = found.orElseThrow(() -> new UsernameNotFoundException("Username/Email Not Found"));
 
+
+
         return User.withUsername(u.getName())
                 .password(u.getPassword())
                 .roles("USER")

@@ -1,5 +1,6 @@
 package com.ryan.url_shortener.domain.services;
 
+import com.ryan.url_shortener.dtos.LoginForm;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -19,11 +20,13 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/css/**", "/js/**", "/images/**", "/webjars/**", "/favicon.ico").permitAll()
-                        .requestMatchers("/", "/login", "/register", "/s/**").permitAll()
+                        .requestMatchers("/", "/login", "/register", "/s/**", "/error").permitAll()
                         .anyRequest().authenticated()
                 )
-                .formLogin(form ->form
+                .formLogin(form -> form
                         .loginPage("/login")
+                        .usernameParameter("usernameOrEmail")
+                        .passwordParameter("password")
                         .defaultSuccessUrl("/")
                         .failureUrl("/login?error")
                         .permitAll()
