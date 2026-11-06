@@ -14,6 +14,11 @@
         <h4 class = "jumbotron bg-light p-4 rounded-4 my-4 fw-semibold">
             Login
         </h4>
+
+        <div th:if="${param.error}" class="error">
+            <h6 style="color: red">*Invalid username or password</h6>
+        </div>
+
         <div class = "card">
             <div class = "card-header">
                 <h5 class = "card-title fw-semibold" >
@@ -21,12 +26,14 @@
                 </h5>
             </div>
 
-
-
             <div class = "card-body">
                 <form th:action = "@{/login}" th:object="${loginForm}" method = "post">
                     <div class = "mb-1"><label for = "usernameOrEmail" class = "form-label">Username Or Email:</label>
                         <input class = "form-control" type = "text" th:field = "*{usernameOrEmail}" id = "usernameOrEmail">
+                        <div class="text-danger"
+                             th:if="*{#fields.hasErrors('usernameOrEmail')}"
+                             th:errors="*{usernameOrEmail}">
+                        </div>
 
                         <label for = "password" class = "form-label">Password:</label>
                         <input type = "text" class = "form-control" th:field="*{password}" id = "password">

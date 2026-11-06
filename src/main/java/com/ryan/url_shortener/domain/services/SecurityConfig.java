@@ -21,6 +21,12 @@ public class SecurityConfig {
                         .requestMatchers("/css/**", "/js/**", "/images/**", "/webjars/**", "/favicon.ico").permitAll()
                         .requestMatchers("/", "/login", "/register", "/s/**").permitAll()
                         .anyRequest().authenticated()
+                )
+                .formLogin(form ->form
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/")
+                        .failureUrl("/login?error")
+                        .permitAll()
                 );
 
         return http.build();
